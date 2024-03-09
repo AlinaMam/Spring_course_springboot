@@ -1,8 +1,7 @@
-package com.zaurtregulov.spring.rest.controller;
+package com.zaurtregulov.spring.springboot.spring_course_springboot.controller;
 
-import com.zaurtregulov.spring.rest.entity.Employee;
-import com.zaurtregulov.spring.rest.exceptionHandling.NoSuchEmployeeException;
-import com.zaurtregulov.spring.rest.service.EmployeeService;
+import com.zaurtregulov.spring.springboot.spring_course_springboot.entity.Employee;
+import com.zaurtregulov.spring.springboot.spring_course_springboot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,30 +26,23 @@ public class MyRestController {
     @GetMapping("/employees/{id}")
     public Employee getEmployee(@PathVariable("id") int id) {//получаем id из параметра метода
         Employee employee = employeeService.getEmployee(id);
-        if (employee == null) {
-            throw new NoSuchEmployeeException("There is no employee with ID = " + id + " in Database");
-        }
         return employee;
     }
 
     @PostMapping("/employees")
-    public Employee addNewEmployee(@RequestBody Employee employee) {//используем инфо из тела POST метода
-        Employee emp = employeeService.saveEmployee(employee);
-        return emp;
+    public void addNewEmployee(@RequestBody Employee employee) {//используем инфо из тела POST метода
+        employeeService.saveEmployee(employee);
     }
 
     @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee employee) {
-        Employee emp = employeeService.saveEmployee(employee);
-        return emp;
+        employeeService.saveEmployee(employee);
+        return employee;
     }
 
     @DeleteMapping("/employees/{id}")
     public String deleteEmployee(@PathVariable("id") int id) {
         Employee employee = employeeService.getEmployee(id);
-        if (employee == null) {
-            throw new NoSuchEmployeeException("There is no employee with ID = " + id + " in Database");
-        }
         employeeService.deleteEmployee(id);
         return "employee with ID = " + id + " was deleted";
     }

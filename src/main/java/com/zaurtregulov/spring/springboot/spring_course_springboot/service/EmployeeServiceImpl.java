@@ -1,7 +1,7 @@
-package com.zaurtregulov.spring.rest.service;
+package com.zaurtregulov.spring.springboot.spring_course_springboot.service;
 
-import com.zaurtregulov.spring.rest.dao.EmployeeDAO;
-import com.zaurtregulov.spring.rest.entity.Employee;
+import com.zaurtregulov.spring.springboot.spring_course_springboot.dao.EmployeeDAO;
+import com.zaurtregulov.spring.springboot.spring_course_springboot.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,9 +25,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public Employee saveEmployee(Employee employee) {
-        Employee emp = employeeDAO.saveEmployee(employee);
-        return emp;
+    public void saveEmployee(Employee employee) {
+        employeeDAO.saveEmployee(employee);
     }
 
     @Override
